@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Remera Algodón",
+        "price": 4500,
+        "image": "/images/remera.jpg",
+        "description": "Remera de algodón 100% de alta calidad.",
+        "stock": 2,
+        "quantity": 2
+    },
+    {
+        "id": 2,
+        "name": "Campera Deportiva",
+        "price": 12000,
+        "image": "/images/campera.jpg",
+        "description": "Campera liviana para uso diario y deportivo.",
+        "stock": 2,
+        "quantity": 2
+    }
+]

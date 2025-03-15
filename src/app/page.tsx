@@ -1,87 +1,62 @@
+// src/app/page.tsx
+"use client"; // Agrega esta línea
+import React, { useState } from "react";
+import ProductGallery from "@/components/productGallery/ProductGallery";
+import ProductModal from "@/components/productModal/ProductModal";
 import Header from "@/components/header/Header";
 import NavBar from "@/components/navBar/NavBar";
-import Image from "next/image";
+import { Product } from "@/types/product";
 
 export default function Home() {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [cart, setCart] = useState<Product[]>([]);
+
+  // src/app/page.tsx
+  const addToCart = (product: Product) => {
+    setCart(prevCart => {
+      const existingProduct = prevCart.find(item => item.id === product.id);
+      if (existingProduct) {
+        // Si el producto ya existe, aumentar la cantidad solo si hay stock disponible
+        if (existingProduct.quantity < product.stock) {
+          return prevCart.map(item =>
+            item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          );
+        } else {
+          alert("No hay suficiente stock disponible.");
+          return prevCart; // No se modifica el carrito si no hay stock
+        }
+      } else {
+        // Si no existe, agregar el producto con cantidad 1 solo si hay stock
+        if (product.stock > 0) {
+          return [...prevCart, { ...product, quantity: 1 }]; // Agregar quantity aquí
+        } else {
+          alert("No hay suficiente stock disponible.");
+          return prevCart; // No se agrega el producto si no hay stock
+        }
+      }
+    });
+    setSelectedProduct(null); // Cierra el modal después de agregar al carrito
+  };
+
   return (
     <>
       <NavBar />
-          <Header/>
+      <Header />
       <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        
-
-        <section className="grid grid-cols-1 gap-8 max-w-5xl px-4 sm:px-6 lg:px-8">
-          {/* Producto 1 */}
-          <div className="bg-white rounded-lg shadow-md">
-            <Image
-              src={"https://res.cloudinary.com/dhrfu31jp/image/upload/v1688332349/lasetubal/home/reels_xifved.jpg"}
-              alt="Producto 1"
-              width={670}
-              height={500}
-              className="rounded-t-lg"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">Producto 1</h2>
-              <p className="text-gray-600">
-                Descripción del producto 1. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
-              <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
-                Agregar al carrito
-              </button>
-            </div>
-          </div>
-
-          {/* Producto 2 */}
-          <div className="bg-white rounded-lg shadow-md">
-            <Image
-              src={"https://res.cloudinary.com/dhrfu31jp/image/upload/v1688332348/lasetubal/home/camping_d6hq1k.jpg"}
-              alt="Producto 2"
-              width={670}
-              height={300}
-              className="rounded-t-lg"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">Producto 2</h2>
-              <p className="text-gray-600">
-                Descripción del producto 2. Sed ut perspiciatis unde omnis iste
-                natus error.
-              </p>
-              <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
-                Agregar al carrito
-              </button>
-            </div>
-          </div>
-
-          {/* Producto 3 */}
-          <div className="bg-white rounded-lg shadow-md">
-            <Image
-              src={"https://res.cloudinary.com/dhrfu31jp/image/upload/v1688332349/lasetubal/home/reels_2_vprdy9.jpg"}
-              alt="Producto 3"
-              width={670}
-              height={300}
-              className="rounded-t-lg"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">Producto 3</h2>
-              <p className="text-gray-600">
-                Descripción del producto 3. Nemo enim ipsam voluptatem quia
-                voluptas.
-              </p>
-              <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
-                Agregar al carrito
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <footer className="mt-12 text-center">
-          <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Tienda de Productos de Caza, Pesca
-            y Camping
-          </p>
-        </footer>
-      </main>
+        <ProductGallery onSelectProduct={setSelectedProduct} />
+ </main>
+      <footer className="mt-12 text-center">
+        <p className="text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} Tienda de Productos de Caza, Pesca y Camping
+        </p>
+      </footer>
+      {selectedProduct && (
+        <ProductModal 
+          product={selectedProduct} 
+          onClose={() => setSelectedProduct(null)} 
+          addToCart={addToCart} // Asegúrate de pasar esta propiedad
+        />
+      )}
     </>
   );
 }
