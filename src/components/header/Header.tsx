@@ -14,12 +14,12 @@ export default function Header() {
             height={200}
             className="w-full h-full"
             src={img}
-            alt="La Setubal Outdoors"
+            alt=" Aguara Indumentaria"
           />
         </div>
         {/* <div className="absolute inset-0 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 flex flex-col justify-center items-center">
           <h1 className="mt-1 text-center font-bold uppercase text-gray-900 sm:text-5xl sm:tracking-tight lg:text-7xl text-white">
-            Tienda Online de La Setubal Outdoors
+            Tienda Online de Aguara Indumentaria
           </h1>
         </div> */}
       </div>

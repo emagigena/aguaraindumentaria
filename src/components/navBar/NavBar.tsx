@@ -8,7 +8,7 @@ const NavBar = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link href="/">
-                <span className="text-white font-bold text-xl">La Setubal Outdoors</span>
+                <span className="text-white font-bold text-xl">Aguara Indumentaria</span>
               </Link>
             </div>
           </div>
