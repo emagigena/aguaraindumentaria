@@ -1,87 +1,141 @@
-import mongoose from "mongoose"
-import dbConnect from "./mongodb"
-import Product from "./models/Product"
+import { NextResponse } from 'next/server';
+import dbConnect from '@/lib/mongodb';
+import Product from '@/lib/models/Product';
 
 const sampleProducts = [
   {
-    nombre: "Auriculares Inalámbricos Premium",
+    nombre: 'Remera UV Dorado Junior',
     descripcion:
-      "Disfruta de un sonido excepcional con estos auriculares inalámbricos premium. Cuentan con tecnología de cancelación activa de ruido, hasta 30 horas de duración de batería y un diseño ergonómico para máxima comodidad durante todo el día.",
-    precio: 129.99,
-    imagen: "/placeholder.svg?height=500&width=500",
-    stock: 15,
+      'Remera con protección UV 50+ para niños, ideal para pesca y actividades al aire libre. Tela liviana de secado rápido con tecnología DRY-FIT que mantiene al niño fresco y protegido del sol.',
+    precio: 4500,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 50,
+    categoria: 'Remeras',
+    caracteristicas: ['Protección UV', 'Secado rápido', 'DRY-FIT'],
   },
   {
-    nombre: "Smartwatch Fitness Pro",
+    nombre: 'Campera Softshell Camo 3D',
     descripcion:
-      "El Smartwatch Fitness Pro es tu compañero ideal para mantener un estilo de vida activo. Con GPS integrado, monitor de frecuencia cardíaca, seguimiento del sueño y más de 20 modos deportivos, te ayuda a alcanzar tus objetivos de fitness mientras mantienes el estilo.",
-    precio: 199.99,
-    imagen: "/placeholder.svg?height=500&width=500",
-    stock: 8,
+      'Campera impermeable con patrón de camuflaje 3D para caza. Confeccionada con membrana impermeable y transpirable que mantiene el cuerpo seco en condiciones de lluvia mientras permite la evacuación del sudor.',
+    precio: 18500,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 25,
+    categoria: 'Camperas',
+    caracteristicas: ['Impermeable', 'Transpirable', 'Camuflaje'],
   },
   {
-    nombre: "Cámara Mirrorless 4K",
+    nombre: 'Pantalón Cargo Antimosquitos',
     descripcion:
-      "Captura momentos inolvidables con una calidad excepcional. Esta cámara mirrorless cuenta con un sensor APS-C de 24.2MP, grabación de video 4K/60fps, estabilización de imagen de 5 ejes y un sistema de enfoque automático rápido y preciso.",
-    precio: 899.99,
-    imagen: "/placeholder.svg?height=500&width=500",
-    stock: 5,
+      'Pantalón cargo con tratamiento antimosquitos y protección UV. Múltiples bolsillos y confeccionado con tela ripstop resistente a desgarros. Ideal para expediciones de pesca y caza en zonas con alta presencia de insectos.',
+    precio: 12000,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 35,
+    categoria: 'Pantalones',
+    caracteristicas: ['Antimosquitos', 'Protección UV', 'Resistente'],
   },
   {
-    nombre: "Zapatillas Running Ultra",
+    nombre: 'Chaleco Multibolsillos Pescador',
     descripcion:
-      "Las zapatillas Running Ultra están diseñadas para corredores que buscan rendimiento y comodidad. Con una mediasuela de espuma reactiva, parte superior transpirable y suela de goma duradera, te ofrecen una experiencia de carrera suave y energética.",
-    precio: 149.99,
-    imagen: "/placeholder.svg?height=500&width=500",
+      'Chaleco técnico con múltiples bolsillos para pescadores. Confeccionado en tela liviana de secado rápido con tratamiento repelente al agua. Ideal para llevar todos los accesorios necesarios durante la jornada de pesca.',
+    precio: 9800,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 40,
+    categoria: 'Accesorios',
+    caracteristicas: ['Secado rápido', 'Repelente al agua', 'Multibolsillos'],
+  },
+  {
+    nombre: 'Remera Térmica Primera Capa',
+    descripcion:
+      'Remera térmica de primera capa con tecnología de retención de calor. Ideal como base para actividades de caza en climas fríos. Su tejido elástico se adapta al cuerpo sin restringir movimientos.',
+    precio: 5500,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 45,
+    categoria: 'Remeras',
+    caracteristicas: ['Térmica', 'Elástica', 'Primera capa'],
+  },
+  {
+    nombre: 'Pantalón Impermeable Camuflado',
+    descripcion:
+      'Pantalón 100% impermeable con patrón de camuflaje para caza. Costuras selladas y membrana impermeable de alta calidad que garantiza protección en condiciones de lluvia intensa.',
+    precio: 14500,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 30,
+    categoria: 'Pantalones',
+    caracteristicas: ['Impermeable', 'Camuflaje', 'Costuras selladas'],
+  },
+  {
+    nombre: 'Gorra Protección UV Pescador',
+    descripcion:
+      'Gorra con protección UV y tapa cuello desmontable. Ideal para largas jornadas de pesca bajo el sol. Confeccionada en tela liviana de secado rápido con tratamiento antimicrobiano.',
+    precio: 3800,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 60,
+    categoria: 'Accesorios',
+    caracteristicas: ['Protección UV', 'Secado rápido', 'Antimicrobiano'],
+  },
+  {
+    nombre: 'Campera Polar Camo Bosque',
+    descripcion:
+      'Campera polar con patrón de camuflaje de bosque. Excelente como capa intermedia para actividades de caza en climas fríos. Alta capacidad térmica con peso reducido.',
+    precio: 8900,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 35,
+    categoria: 'Camperas',
+    caracteristicas: ['Térmica', 'Camuflaje', 'Liviana'],
+  },
+  {
+    nombre: 'Remera UV Manga Larga Pesca',
+    descripcion:
+      'Remera de manga larga con protección UV 50+ para pesca. Confeccionada con tecnología DRY-FIT que evacúa rápidamente la humedad del cuerpo. Ideal para largas jornadas bajo el sol.',
+    precio: 6200,
+    imagen: '/placeholder.svg?height=500&width=500',
+    stock: 40,
+    categoria: 'Remeras',
+    caracteristicas: ['Protección UV', 'DRY-FIT', 'Manga larga'],
+  },
+  {
+    nombre: 'Botas Impermeables Camufladas',
+    descripcion:
+      'Botas totalmente impermeables con patrón de camuflaje. Suela antideslizante y refuerzo en puntera. Ideales para caza en terrenos húmedos y pantanosos.',
+    precio: 22000,
+    imagen: '/placeholder.svg?height=500&width=500',
     stock: 20,
+    categoria: 'Accesorios',
+    caracteristicas: ['Impermeable', 'Camuflaje', 'Antideslizante'],
   },
-  {
-    nombre: "Laptop Ultradelgada Pro",
-    descripcion:
-      "La Laptop Ultradelgada Pro combina potencia y portabilidad en un diseño elegante. Con un procesador de última generación, gráficos dedicados, pantalla 4K y un chasis de aluminio ultraligero, es perfecta para profesionales creativos y usuarios exigentes.",
-    precio: 1299.99,
-    imagen: "/placeholder.svg?height=500&width=500",
-    stock: 3,
-  },
-  {
-    nombre: "Altavoz Inteligente 360",
-    descripcion:
-      "Llena cualquier habitación con un sonido envolvente de 360 grados. Este altavoz inteligente cuenta con un asistente de voz integrado, conectividad multi-habitación y un diseño elegante que complementa cualquier espacio.",
-    precio: 179.99,
-    imagen: "/placeholder.svg?height=500&width=500",
-    stock: 12,
-  },
-]
+];
 
-export async function seedDatabase() {
+export default async function GET() {
   try {
-    await dbConnect()
+    console.log('Seed API: Connecting to MongoDB...');
+    await dbConnect();
+    console.log('Seed API: MongoDB connected');
 
     // Check if we already have products
-    const count = await Product.countDocuments()
+    const count = await Product.countDocuments();
+    console.log(`Seed API: Found ${count} existing products`);
 
     if (count === 0) {
-      console.log("Seeding database with sample products...")
-      await Product.insertMany(sampleProducts)
-      console.log("Database seeded successfully!")
+      console.log('Seed API: Seeding database with sample products...');
+      await Product.insertMany(sampleProducts);
+      console.log('Seed API: Database seeded successfully!');
+      return NextResponse.json({ success: true, message: 'Database seeded successfully' });
     } else {
-      console.log("Database already has products, skipping seed.")
+      // Option to reset and reseed
+      await Product.deleteMany({});
+      await Product.insertMany(sampleProducts);
+      console.log('Seed API: Database reset and reseeded successfully!');
+      return NextResponse.json({ success: true, message: 'Database reset and reseeded successfully' });
     }
   } catch (error) {
-    console.error("Error seeding database:", error)
-  } finally {
-    // Close the connection
-    await mongoose.disconnect()
+    console.error('Error seeding database:', error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Error seeding database',
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 },
+    );
   }
 }
-
-// Run this file directly to seed the database
-// if (require.main === module) {
-//   seedDatabase()
-//     .then(() => process.exit(0))
-//     .catch((error) => {
-//       console.error(error)
-//       process.exit(1)
-//     })
-// }
-

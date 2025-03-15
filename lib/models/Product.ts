@@ -1,12 +1,14 @@
-import mongoose, { Schema } from "mongoose"
+import { Schema, model, models } from 'mongoose';
 
 export interface IProduct {
-  _id: string
-  nombre: string
-  descripcion: string
-  precio: number
-  imagen: string
-  stock: number
+  _id: string;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagen: string;
+  stock: number;
+  categoria: string;
+  caracteristicas: string[];
 }
 
 const ProductSchema = new Schema<IProduct>({
@@ -31,7 +33,19 @@ const ProductSchema = new Schema<IProduct>({
     required: true,
     default: 0,
   },
-})
+  categoria: {
+    type: String,
+    required: true,
+    enum: ['Remeras', 'Pantalones', 'Camperas', 'Accesorios'],
+  },
+  caracteristicas: {
+    type: [String],
+    default: [],
+  },
+});
 
-export default mongoose.models.Product || mongoose.model<IProduct>("Product", ProductSchema)
+// Check if the model exists before creating a new one
+// This is important for Next.js hot reloading
+const Product = models.Product || model<IProduct>('Product', ProductSchema);
 
+export default Product;
