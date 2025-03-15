@@ -23,10 +23,15 @@ export default function CartItemComponent({ item }: CartItemProps) {
     <div className='flex flex-col sm:flex-row items-start sm:items-center py-4 border-b gap-4'>
       <div className='relative aspect-square h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border bg-muted'>
         <Image
-          src={item.product.imagen || '/placeholder.svg'}
+          src={
+            item.product.imagen.startsWith('data:image')
+              ? item.product.imagen
+              : item.product.imagen || '/placeholder.svg'
+          }
           alt={item.product.nombre}
           fill
           className='object-cover'
+          unoptimized={item.product.imagen.startsWith('data:image')}
         />
       </div>
 

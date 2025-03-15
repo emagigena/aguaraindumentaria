@@ -12,6 +12,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import type { Product } from '@/lib/types';
+import ImageUpload from './image-upload';
+import { resizeImage } from '@/lib/image-utils';
 
 interface ProductFormProps {
   product?: Product;
@@ -92,6 +94,19 @@ export default function ProductForm({ product, isEditing = false }: ProductFormP
     setLoading(true);
 
     try {
+      // Resize the image if it's a base64 image
+      const processedData = { ...formData };
+
+      if (formData.imagen && formData.imagen.startsWith('data:image')) {
+        try {
+          const resizedImage = await resizeImage(formData.imagen, 1200, 0.8);
+          processedData.imagen = resizedImage;
+        } catch (imageError) {
+          console.error('Error resizing image:', imageError);
+          // Continue with the original image if resizing fails
+        }
+      }
+
       const url = isEditing ? `/api/products/${product?._id}` : '/api/products';
 
       const method = isEditing ? 'PUT' : 'POST';
@@ -101,7 +116,7 @@ export default function ProductForm({ product, isEditing = false }: ProductFormP
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(processedData),
       });
 
       if (!response.ok) {
@@ -207,16 +222,18 @@ export default function ProductForm({ product, isEditing = false }: ProductFormP
       </div>
 
       <div className='space-y-2'>
-        <Label htmlFor='imagen'>URL de la imagen</Label>
-        <Input
-          id='imagen'
-          name='imagen'
-          value={formData.imagen}
-          onChange={handleChange}
-          placeholder='/placeholder.svg?height=500&width=500'
+        <Label htmlFor='imagen'>Imagen del producto</Label>
+        <ImageUpload
+          initialImage={formData.imagen}
+          onImageChange={(base64Image: string) => {
+            setFormData({
+              ...formData,
+              imagen: base64Image,
+            });
+          }}
         />
         <p className='text-xs text-muted-foreground'>
-          Deje en blanco para usar una imagen de marcador de posición
+          Arrastre una imagen o haga clic para seleccionar un archivo
         </p>
       </div>
 

@@ -27,6 +27,7 @@ const ProductSchema = new Schema<IProduct>({
   imagen: {
     type: String,
     required: true,
+    maxlength: 5000000, // Approximately 5MB in base64
   },
   stock: {
     type: Number,

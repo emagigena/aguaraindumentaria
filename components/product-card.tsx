@@ -18,11 +18,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Link href={`/products/${product._id}`}>
         <div className='aspect-square relative overflow-hidden bg-muted'>
           <Image
-            src={product.imagen || '/placeholder.svg'}
+            src={
+              product.imagen.startsWith('data:image') ? product.imagen : product.imagen || '/placeholder.svg'
+            }
             alt={product.nombre}
             fill
             className='object-cover transition-transform hover:scale-105'
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            unoptimized={product.imagen.startsWith('data:image')}
           />
           {product.stock > 0 && (
             <div className='absolute top-2 right-2'>

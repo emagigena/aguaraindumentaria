@@ -19,7 +19,8 @@ export async function GET(request: Request, props: { params: Promise<{ id: strin
   }
 }
 
-export const PUT = async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const PUT = async (request: NextRequest, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     await dbConnect();
     const data = await request.json();
@@ -46,7 +47,8 @@ export const PUT = async (request: NextRequest, { params }: { params: { id: stri
   }
 };
 
-export const DELETE = async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const DELETE = async (request: NextRequest, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     await dbConnect();
     const product = await Product.findByIdAndDelete(params.id);

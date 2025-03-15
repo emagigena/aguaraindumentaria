@@ -135,12 +135,15 @@ export default function ProductPage(props: ProductPageProps) {
       <div className='grid md:grid-cols-2 gap-8'>
         <div className='relative aspect-square bg-muted rounded-lg overflow-hidden'>
           <Image
-            src={product.imagen || '/placeholder.svg'}
+            src={
+              product.imagen.startsWith('data:image') ? product.imagen : product.imagen || '/placeholder.svg'
+            }
             alt={product.nombre}
             fill
             className='object-cover'
             sizes='(max-width: 768px) 100vw, 50vw'
             priority
+            unoptimized={product.imagen.startsWith('data:image')}
           />
           <div className='absolute top-4 left-4'>
             <Badge
