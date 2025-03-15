@@ -130,7 +130,7 @@ export default function ProductForm({ product, isEditing = false }: ProductFormP
           : 'El producto ha sido creado correctamente',
       });
 
-      router.push('/admin/products');
+      router.push('/admin');
     } catch (error) {
       console.error('Error saving product:', error);
       toast({

@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'TiendaModerna - Catálogo de Productos',
+  title: 'Aguara Indumentaria - Catálogo de Productos',
   description: 'Descubre nuestra selección de productos de alta calidad',
   generator: 'v0.dev',
 };

@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/lib/cart-context';
+import imagelogo from '../public/aguaralogo.png'
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,9 +35,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-shadow ${
-        isScrolled ? 'shadow-md' : ''
-      }`}
+      className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-shadow ${isScrolled ? 'shadow-md' : ''
+        }`}
     >
       <div className='container mx-auto px-4'>
         <div className='flex h-16 items-center justify-between'>
@@ -44,6 +45,13 @@ export default function Navbar() {
               href='/'
               className='flex items-center'
             >
+              <Image
+                src={imagelogo}
+                alt='logo'
+                width={60} // Ancho de la imagen (ajusta según tus necesidades)
+                height={40} // Alto de la imagen (ajusta según tus necesidades)
+                className='object-cover'
+              />
               <span className='text-xl font-bold text-primary'>AGUARÁ</span>
               <span className='text-xs font-semibold bg-primary text-white px-1.5 py-0.5 ml-2 rounded'>
                 MAYORISTA
@@ -52,7 +60,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className='hidden md:flex md:flex-1 md:justify-center md:px-4'>
+          {/* <div className='hidden md:flex md:flex-1 md:justify-center md:px-4'>
             <div className='relative w-full max-w-md'>
               <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
               <Input
@@ -61,9 +69,9 @@ export default function Navbar() {
                 className='w-full bg-background pl-8'
               />
             </div>
-          </div>
+          </div> */}
 
-          <nav className='hidden md:flex items-center space-x-6'>
+          <nav className='hidden md:flex items-center space-x-20'>
             {categories.map((category) => (
               <Link
                 key={category.name}
