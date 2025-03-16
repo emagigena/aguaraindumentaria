@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/lib/cart-context';
 import imagelogo from '../public/aguaralogo.png'
 import Image from 'next/image';
+import ThemeToggle from './theme-toggle';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,6 +82,9 @@ export default function Navbar() {
                 {category.name}
               </Link>
             ))}
+            {/* /* Dark Mode */}
+            <ThemeToggle />
+
             <Link href='/cart'>
               <Button
                 variant='outline'
@@ -100,6 +104,8 @@ export default function Navbar() {
 
           {/* Mobile Navigation */}
           <div className='flex md:hidden items-center gap-4'>
+            {/* /* Dark Mode */}
+            <ThemeToggle />
             <Link href='/cart'>
               <Button
                 variant='outline'
