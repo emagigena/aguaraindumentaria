@@ -103,7 +103,7 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Navigation */}
-          <div className='flex md:hidden items-center gap-4'>
+          <div className='flex md:hidden items-center gap-1'>
             {/* /* Dark Mode */}
             <ThemeToggle />
             <Link href='/cart'>
