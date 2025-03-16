@@ -147,32 +147,29 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className='fixed inset-0 z-50 bg-background md:hidden'>
-          <div className='flex h-16 items-center justify-between px-4'>
-            <Link
-              href='/'
-              className='flex items-center'
-            >
-              <span className='text-xl font-bold text-primary'>AGUARÁ</span>
-              <span className='text-xs font-semibold bg-primary text-white px-1.5 py-0.5 ml-2 rounded'>
+        <div className="absolute top-16 left-0 w-full bg-white dark:bg-gray-900 md:hidden transition-all duration-300 ease-in-out shadow-md">
+          <div className="flex h-16 items-center justify-between px-4 border-b border-muted">
+            <Link href="/" className="flex items-center">
+              {/* <span className="text-xl font-bold text-primary">AGUARÁ</span>
+              <span className="text-xs font-semibold bg-primary text-white px-1.5 py-0.5 ml-2 rounded">
                 MAYORISTA
-              </span>
+              </span> */}
             </Link>
             <Button
-              variant='ghost'
-              size='icon'
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMenuOpen(false)}
             >
-              <X className='h-6 w-6' />
-              <span className='sr-only'>Cerrar menú</span>
+              <X className="h-6 w-6" />
+              <span className="sr-only">Cerrar menú</span>
             </Button>
           </div>
-          <nav className='mt-4 px-4 grid gap-2 bg-white'>
+          <nav className="mt-4 px-4 grid gap-2 ">
             {categories.map((category) => (
               <Link
                 key={category.name}
                 href={category.href}
-                className='flex items-center py-3 text-base font-medium border-b border-muted'
+                className="flex items-center py-3 text-base font-medium border-b border-muted"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {category.name}
@@ -181,6 +178,7 @@ export default function Navbar() {
           </nav>
         </div>
       )}
+
     </header>
   );
 }
