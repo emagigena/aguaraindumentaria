@@ -127,7 +127,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Search - Always visible on mobile */}
-        <div className='pb-4 md:hidden'>
+        {/* <div className='pb-4 md:hidden'>
           <div className='relative w-full'>
             <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
             <Input
@@ -136,7 +136,7 @@ export default function Navbar() {
               className='w-full bg-background pl-8'
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Mobile Menu */}
@@ -161,7 +161,7 @@ export default function Navbar() {
               <span className='sr-only'>Cerrar menú</span>
             </Button>
           </div>
-          <nav className='mt-4 px-4 grid gap-2'>
+          <nav className='mt-4 px-4 grid gap-2 bg-white'>
             {categories.map((category) => (
               <Link
                 key={category.name}
