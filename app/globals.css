@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    /* Aguará color palette */
+    --primary: 246 28% 21%;
+    /* #292645 - color principal */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 64%;
+    /* #A2A2A2 - tono neutro */
+    --secondary-foreground: 0 0% 9%;
+
+    --accent: 0 0% 82%;
+    /* #D2D2D2 - acento claro */
+    --accent-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 246 28% 21%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    /* Aguará dark mode color palette */
+    --primary: 246 28% 21%;
+    /* #292645 - color principal */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 64%;
+    /* #A2A2A2 - tono neutro */
+    --secondary-foreground: 0 0% 9%;
+
+    --accent: 0 0% 82%;
+    /* #D2D2D2 - acento claro */
+    --accent-foreground: 0 0% 9%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 246 28% 21%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles */
+.wholesale-badge {
+  @apply bg-primary text-primary-foreground text-xs font-semibold px-2.5 py-0.5 rounded;
+}
+
+.category-badge {
+  @apply bg-secondary/20 text-secondary-foreground text-xs font-medium px-2.5 py-0.5 rounded-full;
+}
+
+.feature-badge {
+  @apply bg-accent/30 text-secondary-foreground text-xs font-medium px-2.5 py-0.5 rounded-full;
+}
