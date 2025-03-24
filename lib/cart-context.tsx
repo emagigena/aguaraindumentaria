@@ -88,7 +88,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
 
     message += `\nTotal: $${getCartTotal().toFixed(2)}\n\n`;
-    message += 'Por favor, necesito información sobre disponibilidad y tiempos de entrega. Gracias.';
+    message += 'Gracias.';
 
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };

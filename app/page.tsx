@@ -76,7 +76,7 @@ export default function Home() {
         result = result.filter((product) =>
           caracteristicas.some(
             (feature) =>
-              product.caracteristicas.some((c) => c.toLowerCase().includes(feature.toLowerCase())) ||
+              product?.caracteristicas?.some((c) => c.toLowerCase().includes(feature.toLowerCase())) ||
               product.descripcion.toLowerCase().includes(feature.toLowerCase()),
           ),
         );

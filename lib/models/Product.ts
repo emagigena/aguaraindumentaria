@@ -6,6 +6,7 @@ export interface IProduct {
   descripcion: string;
   precio: number;
   imagen: string;
+  imagenes: [];
   stock: number;
   categoria: string;
   caracteristicas: string[];
@@ -28,6 +29,10 @@ const ProductSchema = new Schema<IProduct>({
     type: String,
     required: true,
     maxlength: 5000000, // Approximately 5MB in base64
+  },
+  imagenes: {
+    type: [String],
+    default: []
   },
   stock: {
     type: Number,

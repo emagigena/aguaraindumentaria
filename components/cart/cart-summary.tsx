@@ -49,8 +49,8 @@ export default function CartSummary() {
             size='lg'
             disabled={cartItems.length === 0 || !hasMinimumQuantity}
           >
-            <WhatsappLogo className='h-5 w-5' />
-            Consultar por WhatsApp
+            <WhatsappLogo className='h-5 w-5 text-black' />
+            <p className='text-black'>Consultar por WhatsApp</p>
           </Button>
         </a>
       </CardFooter>

@@ -1,12 +1,13 @@
-export interface Product {
-  _id: string;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  imagen: string;
-  stock: number;
-  categoria: string;
-  caracteristicas: string[];
+export type Product = {
+  _id: string
+  nombre: string
+  descripcion: string
+  precio: number
+  stock: number
+  categoria: string
+  imagen: string
+  imagenes?: string[] // Array of image URLs for the carousel (optional for backward compatibility)
+  caracteristicas?: string[] // Optional array of product features/characteristics
 }
 
 export interface CartItem {
