@@ -252,7 +252,7 @@ export default function ProductForm({ product, isEditing = false }: ProductFormP
         <Button
           type='button'
           variant='outline'
-          onClick={() => router.push('/admin/products')}
+          onClick={() => router.push('/admin')}
         >
           Cancelar
         </Button>

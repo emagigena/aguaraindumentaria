@@ -39,7 +39,7 @@ export default function EditProductPage(props: EditProductPageProps) {
           description: 'No se pudo cargar el producto',
           variant: 'destructive',
         });
-        router.push('/admin/products');
+        router.push('/admin');
       } finally {
         setLoading(false);
       }
