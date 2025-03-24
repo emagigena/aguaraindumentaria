@@ -32,7 +32,7 @@ export default function CartSummary() {
           <p className='font-medium text-foreground mb-1'>Información importante:</p>
           <ul className='list-disc pl-5 space-y-1'>
             <li>Venta exclusiva para mayoristas</li>
-            <li>Compra mínima: 10 unidades por producto</li>
+            <li>Compra únicamente Mayorista</li>
             <li>Envíos a todo el país</li>
           </ul>
         </div>

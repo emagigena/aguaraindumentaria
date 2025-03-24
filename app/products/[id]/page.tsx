@@ -316,7 +316,7 @@ export default function ProductPage(props: ProductPageProps) {
               <Check className="h-4 w-4 mr-1" />
               <span className="font-medium">Venta exclusiva mayorista</span>
             </div>
-            <p className="text-sm text-muted-foreground">Compra mínima: 10 unidades por producto.</p>
+            <p className="text-sm text-muted-foreground">Compra únicamente al por mayor.</p>
           </div>
 
           <div className="mt-6">

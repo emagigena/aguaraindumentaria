@@ -55,7 +55,7 @@ export default function CartPage() {
                     <AlertCircle className='h-4 w-4 text-destructive' />
                     <AlertTitle className='text-destructive'>Cantidad mínima no alcanzada</AlertTitle>
                     <AlertDescription className='text-sm'>
-                      Recuerda que la compra mínima es de 10 unidades por producto.
+                      Recuerda que la compra debe ser Mayorista.
                     </AlertDescription>
                   </Alert>
                 )}

@@ -20,7 +20,7 @@ export default function WholesaleBanner() {
       <AlertCircle className='h-4 w-4 text-primary' />
       <AlertTitle className='text-primary font-medium'>Venta exclusiva mayorista</AlertTitle>
       <AlertDescription className='text-sm'>
-        Aguará Indumentaria opera únicamente bajo modalidad mayorista. Compra mínima: 10 unidades.
+        Aguará Indumentaria opera únicamente bajo modalidad mayorista.
       </AlertDescription>
     </Alert>
   );
