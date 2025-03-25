@@ -71,6 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <CardFooter className='p-4 pt-0'>
         <Link
           href={`/products/${product._id}`}
+          target='_blank'
           className='w-full'
         >
           <Button className='w-full bg-primary hover:bg-primary/90'>Ver más</Button>

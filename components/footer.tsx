@@ -15,7 +15,7 @@ export default function Footer() {
                 <span className="font-semibold">Teléfono:</span> +54 9 3404 59-7724
               </li>
               <li className="mb-2">
-                <span className="font-semibold">Email:</span> contacto@aguaraindumentaria.com
+                <span className="font-semibold">Email:</span> airelibrescc@gmail.com
               </li>
               <li className="mb-2">
                 <span className="font-semibold">WhatsApp:</span> +54 9 3404 59-7724
