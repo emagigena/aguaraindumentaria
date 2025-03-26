@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { useToast } from "@/hooks/use-toast"
 import type { Product } from "@/lib/types"
+import Image from "next/image"
 
 type SortConfig = {
   key: keyof Product | null
@@ -194,6 +195,12 @@ export default function ProductsPage() {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="cursor-pointer" onClick={() => requestSort("imagen")}>
+                  <div className="flex items-center">
+                    Imagen
+                    {getSortIcon("nombre")}
+                  </div>
+                </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => requestSort("nombre")}>
                   <div className="flex items-center">
                     Nombre
@@ -224,6 +231,14 @@ export default function ProductsPage() {
             <TableBody>
               {filteredProducts.map((product) => (
                 <TableRow key={product._id}>
+                  <TableCell className="text-right">
+                    <Image
+                      alt="Imagen de producto"
+                      src={product.imagen}
+                      width={50}  // Ajusta el ancho según tus preferencias
+                      height={50} // Ajusta el alto según tus preferencias
+                    />
+                  </TableCell>
                   <TableCell className="font-medium">{product.nombre}</TableCell>
                   <TableCell>{product.categoria}</TableCell>
                   <TableCell className="text-right">${product.precio.toFixed(2)}</TableCell>
