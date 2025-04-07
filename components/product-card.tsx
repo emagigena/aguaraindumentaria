@@ -15,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Card className='overflow-hidden transition-all hover:shadow-md border-border/60'>
-      <Link href={`/products/${product._id}`}>
+      {/* <Link href={`/products/${product._id}`}> */}
         <div className='aspect-square relative overflow-hidden bg-muted'>
           <Image
             src={
@@ -67,7 +67,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <span className='wholesale-badge'>Mayorista</span>
           </div>
         </CardContent>
-      </Link>
+      {/* </Link> */}
       <CardFooter className='p-4 pt-0'>
         <Link
           href={`/products/${product._id}`}
